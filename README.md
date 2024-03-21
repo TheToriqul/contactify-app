@@ -5,6 +5,12 @@ Contactify is a full-stack email contact management application containerized us
 ## Overview 
 
 This project demonstrates how to containerize a React frontend application and a Python API backend application using Docker. It also shows connectivity between the two applications within Docker containers.
+<figure > 
+<p align="center">
+  <img src="./system_design.png" alt="project architecture" />
+  <p align="center">Project Architecture</p> 
+</p>
+</figure>
 
 ## Frontend Application (React)
 
