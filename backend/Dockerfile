@@ -19,7 +19,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Expose port 5000
-EXPOSE 5000:5000
+# EXPOSE 5000:5000
 
 # Command to run the Python app
 CMD ["python", "main.py"]

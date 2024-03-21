@@ -1,37 +1,81 @@
 version: '3'
 
 services:
-  frontend:
+  frontend-service:
+    container_name: "client"
     build:
-      context: ./frontend
+      context: ./frontend/.
       dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
+      args:
+        VITE_API_URL: ${VITE_API_URL}
+    # ports:
+    #   - ${CLIENT_APP_EXTERNAL_PORT}:${CLIENT_APP_INTERNAL_PORT}
+    networks:
+      - mynetwork
     depends_on:
-      - backend
+      - api-service-1
+      - api-service-2
+
+  api-service-1:
+    container_name: "api-1"
+    build:
+      context: ./backend/.
+      dockerfile: Dockerfile
+    environment:
+      - SERVICE_NAME=api-service-1
+      - PORT=${API_SERVER_INTERNAL_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_CHANNEL=${REDIS_CHANNEL}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USERNAME=${MYSQL_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_TABLE=${MYSQL_TABLE}
+    # ports:
+    #   - ${API_SERVER_EXTERNAL_PORT}:${API_SERVER_INTERNAL_PORT}
     networks:
       - mynetwork
 
-  backend:
+  api-service-2:
+    container_name: "api-2"
     build:
-      context: ./backend
+      context: ./backend/.
       dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
+    environment:
+      - SERVICE_NAME=api-service-2
+      - PORT=${API_SERVER_INTERNAL_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_CHANNEL=${REDIS_CHANNEL}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USERNAME=${MYSQL_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_TABLE=${MYSQL_TABLE}
+    # ports:
+    #   - ${API_SERVER_EXTERNAL_PORT}:${API_SERVER_INTERNAL_PORT}
     networks:
       - mynetwork
 
   nginx:
+    container_name: nginx_server
     build:
-      context: ./nginx
+      context: ./nginx/.
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - ${NGINX_EXTERNAL_PORT}:${NGINX_INTERNAL_PORT}
+    environment:
+      - CLIENT_APP_INTERNAL_PORT=${CLIENT_APP_INTERNAL_PORT}
+      - API_SERVER_INTERNAL_PORT=${API_SERVER_INTERNAL_PORT}
     networks:
       - mynetwork
     depends_on:
-      - frontend
-      - backend
+      - frontend-service
+      - api-service-1
+      - api-service-2
 
 networks:
   mynetwork:

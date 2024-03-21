@@ -1,28 +1,28 @@
 # Dockerfile for React frontend
 
-# Use Node.js image as the base
-FROM node:alpine
+# Multi-stage build pipeline
 
-# Set the working directory in the container
+# STAGE 1: Building assets using Node image
+# Using nodejs image as starting point
+FROM node:alpine AS builder
+# Setting working directory
 WORKDIR /app
-
-# ENV File need to added
-ENV FLASK_APP=index.html
 
 # Copy package.json and package-lock.json to the container
 COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code to the container
+# Copying rest of the file in image's working directory
 COPY . .
 
-# Build the React app
+# set arguements
+ARG VITE_API_URL
+ENV VITE_API_URL=${VITE_API_URL}
+
+# Building the assets
+RUN npm install
+
 RUN npm run build
 
-# Expose port 3000
 EXPOSE 3000
-
-# Command to run the React app
+# Command to run the Python app
 CMD ["npm", "run", "preview"]
