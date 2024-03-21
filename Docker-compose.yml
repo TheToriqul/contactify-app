@@ -1,28 +1,38 @@
 version: '3'
+
 services:
   frontend:
-    build: frontend
-    networks:
-      - my-network
-
-  backend:
-    build: backend
-    networks:
-      - my-network
-
-  nginx:
-    container_name: nginx_server
     build:
-      context: ./nginx/.
+      context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - 80:80
+      - "3000:3000"
+    depends_on:
+      - backend
     networks:
-      - my-network
+      - mynetwork
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - mynetwork
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - mynetwork
     depends_on:
       - frontend
       - backend
 
 networks:
-  my-network:
+  mynetwork:
     driver: bridge

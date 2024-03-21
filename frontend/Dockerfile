@@ -6,6 +6,9 @@ FROM node:alpine
 # Set the working directory in the container
 WORKDIR /app
 
+# ENV File need to added
+ENV FLASK_APP=index.html
+
 # Copy package.json and package-lock.json to the container
 COPY package.json package-lock.json ./
 
