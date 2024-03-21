@@ -45,7 +45,7 @@ docker-compose up --build
 3. Access the application in your browser:
 
 - Frontend: [http://localhost](http://localhost)
-- Backend API: [http://localhost/api/data](http://localhost/api/data)
+- Backend API: [http://localhost/backend](http://localhost/backend)
 
 ## Directory Structure
 
