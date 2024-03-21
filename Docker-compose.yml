@@ -1,23 +1,27 @@
 version: '3'
 services:
   frontend:
-    build: ./frontend
+    build: frontend
     networks:
       - my-network
 
   backend:
-    build: ./backend
+    build: backend
     networks:
       - my-network
 
   nginx:
-    image: nginx:latest
+    container_name: nginx_server
+    build:
+      context: ./nginx/.
+      dockerfile: Dockerfile
     ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - 80:80
     networks:
       - my-network
+    depends_on:
+      - frontend
+      - backend
 
 networks:
   my-network:
