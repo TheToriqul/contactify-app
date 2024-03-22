@@ -1,20 +1,17 @@
 version: '3'
 
 services:
-  frontend-service:
-    container_name: "client"
+  backend-service:
+    container_name: "backend"
     build:
-      context: ./frontend/.
+      context: ./backend/.
       dockerfile: Dockerfile
-      args:
-        VITE_API_URL: ${VITE_API_URL}
-    # ports:
-    #   - ${CLIENT_APP_EXTERNAL_PORT}:${CLIENT_APP_INTERNAL_PORT}
+    ports:
+      - 5000:5000
+    volumes:
+        - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - mynetwork
-    depends_on:
-      - api-service-1
-      - api-service-2
 
   api-service-1:
     container_name: "api-1"
@@ -24,17 +21,7 @@ services:
     environment:
       - SERVICE_NAME=api-service-1
       - PORT=${API_SERVER_INTERNAL_PORT}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - REDIS_HOST=${REDIS_HOST}
-      - REDIS_PORT=${REDIS_PORT}
-      - REDIS_CHANNEL=${REDIS_CHANNEL}
-      - MYSQL_HOST=${MYSQL_HOST}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USERNAME=${MYSQL_USERNAME}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_TABLE=${MYSQL_TABLE}
-    # ports:
-    #   - ${API_SERVER_EXTERNAL_PORT}:${API_SERVER_INTERNAL_PORT}
+    hostname: "host1"
     networks:
       - mynetwork
 
@@ -46,10 +33,23 @@ services:
     environment:
       - SERVICE_NAME=api-service-2
       - PORT=${API_SERVER_INTERNAL_PORT}
-    # ports:
-    #   - ${API_SERVER_EXTERNAL_PORT}:${API_SERVER_INTERNAL_PORT}
+    hostname: "host2"
     networks:
       - mynetwork
+
+  frontend-service:
+    container_name: "client"
+    build:
+      context: ./frontend/.
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - mynetwork
+    depends_on:
+      - backend-service
+      - api-service-1
+      - api-service-2
 
   nginx:
     container_name: nginx_server
@@ -57,16 +57,14 @@ services:
       context: ./nginx/.
       dockerfile: Dockerfile
     ports:
-      - ${NGINX_EXTERNAL_PORT}:${NGINX_INTERNAL_PORT}
-    environment:
-      - CLIENT_APP_INTERNAL_PORT=${CLIENT_APP_INTERNAL_PORT}
-      - API_SERVER_INTERNAL_PORT=${API_SERVER_INTERNAL_PORT}
+      - 80:80
     networks:
       - mynetwork
     depends_on:
-      - frontend-service
+      - backend-service
       - api-service-1
       - api-service-2
+      - frontend-service
 
 networks:
   mynetwork:
