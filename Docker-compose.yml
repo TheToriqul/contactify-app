@@ -1,41 +1,41 @@
 version: '3'
 
 services:
-  backend-service:
+  backend:
     container_name: "backend"
     build:
       context: ./backend/.
       dockerfile: Dockerfile
     ports:
       - 5000:5000
-    volumes:
-        - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+    # volumes:
+    #     - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - mynetwork
 
-  api-service-1:
-    container_name: "api-1"
-    build:
-      context: ./backend/.
-      dockerfile: Dockerfile
-    environment:
-      - SERVICE_NAME=api-service-1
-      - PORT=${API_SERVER_INTERNAL_PORT}
-    hostname: "host1"
-    networks:
-      - mynetwork
+  # api-service-1:
+  #   container_name: "api-1"
+  #   build:
+  #     context: ./backend/.
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     - SERVICE_NAME=api-service-1
+  #     - PORT=${API_SERVER_INTERNAL_PORT}
+  #   hostname: "host1"
+  #   networks:
+  #     - mynetwork
 
-  api-service-2:
-    container_name: "api-2"
-    build:
-      context: ./backend/.
-      dockerfile: Dockerfile
-    environment:
-      - SERVICE_NAME=api-service-2
-      - PORT=${API_SERVER_INTERNAL_PORT}
-    hostname: "host2"
-    networks:
-      - mynetwork
+  # api-service-2:
+  #   container_name: "api-2"
+  #   build:
+  #     context: ./backend/.
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     - SERVICE_NAME=api-service-2
+  #     - PORT=${API_SERVER_INTERNAL_PORT}
+  #   hostname: "host2"
+  #   networks:
+  #     - mynetwork
 
   frontend-service:
     container_name: "client"
@@ -47,24 +47,24 @@ services:
     networks:
       - mynetwork
     depends_on:
-      - backend-service
-      - api-service-1
-      - api-service-2
+      - backend
+      # - api-service-1
+      # - api-service-2
 
-  nginx:
-    container_name: nginx_server
-    build:
-      context: ./nginx/.
-      dockerfile: Dockerfile
-    ports:
-      - 80:80
-    networks:
-      - mynetwork
-    depends_on:
-      - backend-service
-      - api-service-1
-      - api-service-2
-      - frontend-service
+  # nginx:
+  #   container_name: nginx_server
+  #   build:
+  #     context: ./nginx
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 80:80
+  #   networks:
+  #     - mynetwork
+  #   depends_on:
+  #     - backend-service
+  #     - api-service-1
+  #     - api-service-2
+  #     - frontend-service
 
 networks:
   mynetwork:
