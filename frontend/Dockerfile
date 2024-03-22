@@ -2,6 +2,7 @@
 
 # Using nodejs image as starting point
 FROM node:alpine AS builder
+
 # Setting working directory
 WORKDIR /app
 
@@ -16,7 +17,7 @@ RUN npm install
 
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE 5173
 
-# Command to run the Python app
-CMD ["npm", "run", "preview"]
+# Command to run the React app
+CMD ["npm", "run", "dev"]
