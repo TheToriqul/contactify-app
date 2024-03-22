@@ -6,6 +6,10 @@ FROM python:alpine
 # Set the working directory in the container
 WORKDIR /app
 
+# ENV Configurations
+ENV FLASK_APP=main.py
+ENV FLASK_ENV=development 
+
 # Copy the Python requirements file to the container
 COPY requirements.txt .
 
@@ -16,7 +20,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Expose port 5000
-EXPOSE 5000
+# EXPOSE 5000
 
 # Command to run the Python app
 CMD ["python", "main.py"]

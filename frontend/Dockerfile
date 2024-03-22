@@ -17,7 +17,7 @@ RUN npm install
 
 RUN npm run build
 
-EXPOSE 5173
+# EXPOSE 5173
 
 # Command to run the React app
 CMD ["npm", "run", "dev"]
