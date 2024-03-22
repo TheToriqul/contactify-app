@@ -7,17 +7,14 @@ FROM node:alpine AS builder
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the container
-COPY package.json package-lock.json ./
+COPY package*.json /app/
+COPY package-lock.json /app/
+
+RUN npm i --silent
+RUN npm i -g react-scripts@5.0.0
 
 # Copying rest of the file in image's working directory
-COPY . .
-
-# Building the assets
-RUN npm install
-
-RUN npm run build
-
-# EXPOSE 5173
+COPY . ./
 
 # Command to run the React app
 CMD ["npm", "run", "dev"]
