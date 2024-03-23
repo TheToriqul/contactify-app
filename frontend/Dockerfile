@@ -16,4 +16,4 @@ RUN npm i -g react-scripts@5.0.0
 COPY . ./
 
 # Command to run the React app
-CMD ["npm", "run", "preview"]
+CMD ["npm", "run", "dev"]
