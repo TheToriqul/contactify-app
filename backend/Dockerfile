@@ -6,10 +6,6 @@ FROM python:alpine
 # Set the working directory in the container
 WORKDIR /api
 
-# ENV Configurations
-# ENV FLASK_APP=main.py
-# ENV FLASK_ENV=development 
-
 # Copy the Python requirements file to the container
 COPY ./requirements.txt /api/requirements.txt
 

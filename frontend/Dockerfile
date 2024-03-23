@@ -8,7 +8,6 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json /app/
-COPY package-lock.json /app/
 
 RUN npm i --silent
 RUN npm i -g react-scripts@5.0.0
@@ -17,4 +16,4 @@ RUN npm i -g react-scripts@5.0.0
 COPY . ./
 
 # Command to run the React app
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "preview"]
