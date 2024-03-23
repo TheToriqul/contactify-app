@@ -7,16 +7,16 @@ FROM python:alpine
 WORKDIR /api
 
 # Copy the Python requirements file to the container
-COPY ./requirements.txt /api/requirements.txt
+COPY requirements.txt requirements.txt
 
 # Install Python dependencies
-RUN pip install --no-cache-dir --upgrade -r /api/requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy the rest of the application code to the container
-COPY . /api/
+COPY . .
 
 # Expose port 5000
-# EXPOSE 5000
+EXPOSE 5000
 
 # Command to run the Python app
 CMD ["python", "main.py", "--host", "0.0.0.0", "--port", "5000"]

@@ -1,23 +1,23 @@
-version: '3'
+version: '3.8'
 
 services:
   backend:
     container_name: "backend"
     build:
-      context: ./backend/.
+      context: ./backend
       dockerfile: Dockerfile
     ports:
-      - 5000:5000
+      - "5000:5000"
     networks:
       - mynetwork
 
   frontend:
     container_name: "frontend"
     build:
-      context: ./frontend/.
+      context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - 5173:5173
+      - "3000:3000"
     networks:
       - mynetwork
     depends_on:
