@@ -1,7 +1,7 @@
 # Dockerfile for Python API backend
 
 # Use Python image as the base
-FROM python:alpine
+FROM python:3.9-alpine
 
 # Set the working directory in the container
 WORKDIR /api

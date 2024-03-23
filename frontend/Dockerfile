@@ -7,12 +7,15 @@ FROM node:alpine AS builder
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the container
-COPY package*.json /app/
+COPY package*.json .
 
-RUN npm ci --only=production
+RUN npm i --silent
 
 # Copying rest of the file in image's working directory
 COPY . .
+
+# Expose port 5173
+EXPOSE 5173
 
 # Command to run the React app
 CMD ["npm", "run", "dev"]
