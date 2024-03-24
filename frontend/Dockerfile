@@ -1,21 +1,12 @@
-# Dockerfile for React frontend
-
-# Using nodejs image as starting point
-FROM node:alpine AS builder
-
-# Setting working directory
+FROM node:alpine as build
 WORKDIR /app
-
-# Copy package.json and package-lock.json to the container
-COPY package*.json .
-
-RUN npm i --silent
-
-# Copying rest of the file in image's working directory
 COPY . .
+RUN npm install && npm run build
 
-# Expose port 5173
-EXPOSE 5173
 
-# Command to run the React app
-CMD ["npm", "run", "dev"]
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+# COPY dist/ .
+COPY --from=build /app/dist/ .
+EXPOSE 3000
+ENTRYPOINT [ "nginx", "-g", "daemon off;"]
