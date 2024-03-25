@@ -1,10 +1,10 @@
-# Contactify App (Dockerized React Frontend and Python API Backend)
+# Contactify: Containerized React Frontend and Python API Backend with Connectivity
 
-Welcome to my Contactify App repository! This project demonstrates the containerization of a full-stack email contact management application using Docker. The Contactify App consists of a React frontend application for the user interface and a Python Flask API for the backend functionality.
+Welcome to my Containerized React Frontend and Python API Backend with Connectivity repository! This project demonstrates the containerization of a React frontend application and a Python API backend application using Docker. The focus here is on containerization using Docker, showcasing connectivity between the two applications.
 
 ## Overview
 
-I'm showcasing how I containerize both the frontend and backend applications using Docker, as well as how to establish connectivity between them within Docker containers.
+I'm showcasing how I containerize both the React frontend and Python API backend applications using Docker, as well as how to establish connectivity between them.
 
 ### Project Architecture
 
@@ -30,7 +30,7 @@ I utilize Docker Compose to demonstrate connectivity between the frontend and ba
 
 ### Implement Reverse Proxy
 
-I have the option to implement a reverse proxy like Nginx to act as a gateway between the frontend and backend applications.
+For enhanced functionality and security, I have implemented a reverse proxy like Nginx to act as a gateway between the frontend and backend applications.
 
 ## Instructions
 
@@ -52,7 +52,7 @@ I have the option to implement a reverse proxy like Nginx to act as a gateway be
     docker-compose up --build
     ```
 
-4. Access my Contactify App in your browser:
+4. Access my Containerized React Frontend and Python API Backend with Connectivity in your browser:
 
     ```
     http://localhost:3000
