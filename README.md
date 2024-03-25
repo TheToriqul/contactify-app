@@ -1,10 +1,13 @@
 # Contactify App (Dockerized React Frontend and Python API Backend)
 
-Contactify is a full-stack email contact management application containerized using Docker. It consists of a React frontend application for the user interface and a Python Flask API for the backend functionality. The project demonstrates connectivity between the frontend and backend applications within Docker containers.
+Welcome to my Contactify App repository! This project demonstrates the containerization of a full-stack email contact management application using Docker. The Contactify App consists of a React frontend application for the user interface and a Python Flask API for the backend functionality.
 
-## Overview 
+## Overview
 
-This project demonstrates how to containerize a React frontend application and a Python API backend application using Docker. It also shows connectivity between the two applications within Docker containers.
+I'm showcasing how I containerize both the frontend and backend applications using Docker, as well as how to establish connectivity between them within Docker containers.
+
+### Project Architecture
+
 <figure > 
 <p align="center">
   <img src="./system_design.png" alt="project architecture" />
@@ -12,24 +15,61 @@ This project demonstrates how to containerize a React frontend application and a
 </p>
 </figure>
 
-## Frontend Application (React)
+**Frontend Application (React):**
+- Built using React
+- Containerized with Docker
+- Served using an Nginx server
 
-The frontend application is built using React and fetches data from the Python API. It is containerized using Docker and served using an Nginx server.
+**Backend Application (Python API):**
+- Simple Python API built with Flask
+- Containerized with Docker
 
-## Backend Application (Python API)
+### Connectivity Between Frontend and Backend
 
-The backend application is a simple Python API built with Flask. It serves data to the frontend application and is containerized using Docker.
+I utilize Docker Compose to demonstrate connectivity between the frontend and backend applications.
 
-## Connectivity Between Frontend and Backend
+### Implement Reverse Proxy
 
-Docker Compose is used to demonstrate connectivity between the frontend and backend applications.
+I have the option to implement a reverse proxy like Nginx to act as a gateway between the frontend and backend applications.
 
-## Implement Reverse Proxy
+## Instructions
 
-You can add a reverse proxy like Nginx to act as a gateway between the frontend and backend applications.
+1. Clone my repository:
+
+    ```bash
+    git clone https://github.com/TheToriqul/Contactify-App.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd Contactify-App
+    ```
+
+3. Build and run the Docker containers using Docker Compose:
+
+    ```bash
+    docker-compose up --build
+    ```
+
+4. Access my Contactify App in your browser:
+
+    ```
+    http://localhost:3000
+    ```
+
+## Dockerfiles
+
+### Backend Dockerfile (./backend/Dockerfile)
+
+My Backend Dockerfile starts with a Python Alpine base image, sets the working directory to `/app`, copies `requirements.txt`, installs Python dependencies, copies the application code, exposes port `5000`, and sets the command to run the Flask application.
+
+### Frontend Dockerfile (./frontend/Dockerfile)
+
+My Frontend Dockerfile sets up a build environment using a Node Alpine base image, sets the working directory to `/app`, copies all files, installs dependencies, and builds the React application. Then, it uses an Nginx Alpine base image, sets the working directory to serve static files, and copies the built files. It exposes port `3000`.
 
 ## Conclusion
 
-By following the instructions provided in this README, you can containerize both the React frontend and Python API backend applications using Docker. Additionally, you can demonstrate connectivity between the two applications within Docker containers. Optionally, you can implement a reverse proxy for enhanced functionality and security.
+By following my instructions, you can containerize both the React frontend and Python API backend applications using Docker. Additionally, you can demonstrate connectivity between the two applications within Docker containers. Optionally, you can implement a reverse proxy for enhanced functionality and security.
 
 Feel free to reach out if you have any questions or need further assistance! 🚀
