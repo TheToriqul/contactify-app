@@ -79,7 +79,7 @@ I utilize Docker Compose to demonstrate connectivity between the frontend and ba
 
 For enhanced functionality and security, I have implemented a reverse proxy like Nginx to act as a gateway between the frontend and backend applications.
 
-## Instructions for Local
+## Instructions for Local Setup
 To run Contactify locally, follow these steps:
 
 1. Clone the repository:
