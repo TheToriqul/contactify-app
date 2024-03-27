@@ -1,10 +1,10 @@
-# Contactify: Containerized A Full Stack Contact Management Application Build by React Frontend and Python API Backend with Connectivity
+# Contactify: Containerized A Full Stack Contact Management Application Build by React Frontend and Python API (Backend) with Connectivity
 
-Welcome to my Containerized React Frontend and Python API Backend with Connectivity repository! This project demonstrates the containerization of a React frontend application and a Python API backend application using Docker. The focus here is on containerization using Docker, showcasing connectivity between the two applications.
+Welcome to my Containerized React Frontend and Python API (Backend) with Connectivity repository! This project demonstrates the containerization of a React frontend application and a Python API (Backend) application using Docker. The focus here is on containerization using Docker, showcasing connectivity between the two applications.
 
 ## Overview
 
-I'm showcasing how I containerize both the React frontend and Python API backend applications using Docker, as well as how to establish connectivity between them.
+I'm showcasing how I containerize both the React frontend and Python API (Backend) applications using Docker, as well as how to establish connectivity between them.
 
 ### Project Architecture
 
@@ -128,7 +128,7 @@ To run Contactify locally, follow these steps:
     docker-compose up --build
     ```
 
-4. Access my Containerized React Frontend and Python API Backend with Connectivity in your browser:
+4. Access my Containerized React Frontend and Python API (Backend) with Connectivity in your browser:
 
     ```
     http://localhost:3000
@@ -151,6 +151,6 @@ My Frontend Dockerfile sets up a build environment using a Node Alpine base imag
 
 ## Conclusion
 
-By following my instructions, you can containerize both the React frontend and Python API backend applications using Docker. Additionally, you can demonstrate connectivity between the two applications within Docker containers. Optionally, you can implement a reverse proxy for enhanced functionality and security.
+By following my instructions, you can containerize both the React frontend and Python API (Backend) applications using Docker. Additionally, you can demonstrate connectivity between the two applications within Docker containers. Optionally, you can implement a reverse proxy for enhanced functionality and security.
 
 Feel free to reach out if you have any questions or need further assistance! 🚀
