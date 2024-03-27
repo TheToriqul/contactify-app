@@ -9,4 +9,4 @@ WORKDIR /usr/share/nginx/html
 # COPY dist/ .
 COPY --from=build /app/dist/ .
 EXPOSE 3000
-ENTRYPOINT [ "nginx", "-g", "daemon off;"]
+ENTRYPOINT [ "nginx", "-g", "daemon off;"] 

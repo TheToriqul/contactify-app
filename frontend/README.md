@@ -1,16 +1,20 @@
 # Contactify - Frontend using React.JS
+
 Welcome to the Contactify frontend part of the Full stack App repository! Here, you'll find the codebase for Contactify, a user-friendly web application crafted with React.js, tailored for seamless contact management. Contactify simplifies the process of managing contacts, offering you the ability to effortlessly create, edit, and browse your contact list. Leveraging modern web technologies like React.js, our frontend ensures a responsive and intuitive interface. Additionally, I have provide a Dockerfile to containerize the application, enabling seamless deployment across different environments. Within this repository, you'll discover Contactify, a straightforward web application developed using React.js, alongside a breakdown of its main files and functionalities for your easy navigation and understanding.
 
 ## Dockerfile Explanation
+
 This Dockerfile serves to containerize a web application constructed with Node.js and Nginx. It facilitates the encapsulation of the application, enabling consistent deployment across various environments. Below, I'll delve into the specifics of each segment to grasp its functionality.
 
 ## Build Stage
+
 - `FROM node:alpine as build`: This sets the base image as Node.js with Alpine Linux as its lightweight version. It creates an intermediate image named `build` for the build stage.
 - `WORKDIR /app`: Sets the working directory within the container to `/app`.
 - `COPY . .`: Copies all files from the current directory into the container's working directory (`/app`).
 - `RUN npm install && npm run build`: Installs dependencies using npm and then builds the application.
 
 ## Final Stage
+
 - `FROM nginx:alpine`: Sets the base image as Nginx with Alpine Linux.
 - `WORKDIR /usr/share/nginx/html`: Sets the working directory to where Nginx serves files from.
 - `COPY --from=build /app/dist/ .`: Copies the built application files from the build stage into the Nginx container's working directory.
@@ -18,7 +22,9 @@ This Dockerfile serves to containerize a web application constructed with Node.j
 - `ENTRYPOINT [ "nginx", "-g", "daemon off;"]`: Specifies the command to run when the container starts. In this case, it starts the Nginx server in the foreground.
 
 ## Usage
+
 To use this Dockerfile, follow these steps:
+
 1. Place the Dockerfile in the root directory of your Node.js project.
 2. Build the Docker image by running:
    ```
@@ -34,6 +40,7 @@ To use this Dockerfile, follow these steps:
 Make sure your Node.js application is configured to run on port 3000 as specified in the Dockerfile's `EXPOSE` directive. Adjust the port number if your application uses a different port.
 
 ## File Structure and Functionalities
+
 Within this repository lies Contactify, a straightforward web application developed using React.js, tailor-made for contact management. Here's a comprehensive overview of the primary files and their respective functionalities:
 
 ### 1. `App.jsx`
