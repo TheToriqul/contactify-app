@@ -86,7 +86,7 @@ To run Contactify locally, follow these steps:
 
    ```
    git clone https://github.com/TheToriqul/Contactify-App.git
-   cd contactify
+   cd Contactify-App
    ```
 
 2. Run the backend server:
